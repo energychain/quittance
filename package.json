@@ -1,6 +1,6 @@
 {
   "name": "stromdao-quittance",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Accounting related processes for CLI or integrated usage (invoice, receipt,...)",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,11 @@
     "energy",
     "accounting"
   ],
+   "bin": {
+    "stromdao-quittance": "./index.js",
+    "stromdao.quittance": "./index.js",    
+    "quittance": "./index.js"
+  },
   "author": "Thorsten Zoerner <thorsten.zoerner@stromdao.de>",
   "license": "MIT",
   "bugs": {
