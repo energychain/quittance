@@ -1,6 +1,6 @@
 {
   "name": "stromdao-quittance",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Accounting related processes for CLI or integrated usage (invoice, receipt,...)",
   "main": "index.js",
   "scripts": {
@@ -16,9 +16,9 @@
     "energy",
     "accounting"
   ],
-   "bin": {
+  "bin": {
     "stromdao-quittance": "./index.js",
-    "stromdao.quittance": "./index.js",    
+    "stromdao.quittance": "./index.js",
     "quittance": "./index.js"
   },
   "author": "Thorsten Zoerner <thorsten.zoerner@stromdao.de>",
@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/energychain/quittance#readme",
   "dependencies": {
+    "dot": "^1.1.2",
     "stromdao-businessobject": "^0.5.22",
     "stromdao-cli-helper": "0.0.3",
     "vorpal": "^1.12.0"
