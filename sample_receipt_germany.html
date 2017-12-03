@@ -1,77 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.0/css/tachyons.css">
 
+  <style type="text/css">
+  html {
+height: 100%
+/*   box-sizing: border-box; */
+}
+
+/* *, *:before, *:after {
+box-sizing: inherit;
+} */
+
+body {
+font-family: -apple-system, BlinkMacSystemFont, 'avenir next', avenir, 'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
+height: 100%;
+background: rgb(204,204,204);
+font-size: 10pt;
+line-height: 1.5;
+}
+
+page, main {
+background: white;
+display: block;
+margin: 0 auto;
+margin-bottom: 0.5cm;
+box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+}
+
+page[size="A4"] {
+width: 21cm;
+min-height: 29.7cm;
+}
+page[size="A4"][layout="portrait"] {
+width: 29.7cm;
+min-height: 21cm;
+}
+page[size="A3"] {
+width: 29.7cm;
+min-height: 42cm;
+}
+page[size="A3"][layout="portrait"] {
+width: 42cm;
+min-height: 29.7cm;
+}
+page[size="A5"] {
+width: 14.8cm;
+min-height: 21cm;
+}
+page[size="A5"][layout="portrait"] {
+width: 21cm;
+min-height: 14.8cm;
+}
+
+main[size="A4"] {
+width: 21cm;
+min-height: 29.7cm;
+}
+
+main {
+/*   padding-left: 25mm;
+padding-right: 20mm; */
+}
+
+header {
+display: table;
+/*   width: 165mm; */
+width: 100%;
+height: 45mm;
+/*background-color: lightgrey;*/
+}
+
+header > * {
+display: table-cell;
+text-align: right;
+vertical-align: middle;
+padding-right: 50mm;
+/*   padding-right: 50mm; */
+}
+
+address {
+font-style: normal;
+}
+
+address#sender {
+/*background-color: pink;*/
+font-size: 7pt;
+line-height: 5mm;
+margin-left: 20mm;
+max-width: 80mm;
+padding-left: 5mm;
+white-space: nowrap;
+}
+
+table {
+width: 100%;
+text-align: left;
+}
+
+table#info-table {
+min-height: 45mm;
+border-spacing: 0;
+padding-left: 20mm;
+padding-right: 10mm;
+margin-bottom: 32px;
+}
+
+td#address-box {
+padding-bottom: 5mm;
+padding-left: 5mm;
+/*background-color: lightblue;*/
+width: 80mm;
+}
+
+#consignee {
+max-height: 40mm;
+/*background-color: pink;*/
+}
+
+td#info-block {
+font-size: 7pt;
+line-height: 10pt;
+width: 75mm;
+vertical-align: bottom;
+/*background-color: lightgreen;*/
+/*   height: 45mm; */
+}
+
+table[type='key-value-pairs'] {
+width: initial;
+border-spacing: 0;
+}
+
+table[type='key-value-pairs'] th,
+table[type='key-value-pairs'] td {
+font-weight: normal;
+vertical-align: top;
+}
+
+table[type='key-value-pairs'] td {
+padding-left: 1em;
+}
+
+
+section {
+margin-left: 25mm;
+margin-right: 20mm;
+}
+
+h1.title {
+font-size: 12pt;
+line-height: 15pt;
+font-weight: normal;
+Margin-top: 0px;
+margin-bottom: 22.5pt;
+}
+
+p {
+margin-top: 0;
+margin-bottom: 15pt
+}
+
+.bg1 {
+  background-image: url("pics/rechnungserlaeuterung_Page_1.jpg");
+  background-repeat:no-repeat;
+  background-size:contain;
+}
+
+@media print {
+body, page {
+  margin: 0;
+  box-shadow: 0;
+}
+}
+  </style>
+</head>
+
+<body class="sans-serif">
   <main size="A4">
 
     <header h="45mm">
-      <h2 class="brand" style="align:right">MusterLieferant</h2>
+      <h2 class="brand" style="align:right">Paul Stromer</h2>
     </header>
-
-    <address id="sender">
-      LIEFERANT | Himbeerstraße 1,Hintertupfing, 14055 Deutschland
-    </address>
-    <div class='InfoTable-wrapper'>
-      <table id="info-table">
-       <tr><td><h3>&nbsp;</h3></td></tr>
+	<section>
+ 			<address id="sender">
+			  
+			</address>   
+         <table width="100%">
+        <tbody>
+          <tr>
+            <td>
+			<div style="font-size:9px;">PAUL STROMER| Himbeerstraße 1, 12345 Lieferort<hr/></div>
+			<div>Maria Fahrer</div>                    
+			<div>Breitestraße 23</div>
+			<div>78912 Wohnort</div>
+            </td>                
+            <td></td>
+            <td>              
+					Betreiber der Lieferstelle
+                    <div>Paul Stromer</div>
+                    <div>paul.stromer@kleinlieferant.de</div>
+                    <div>Himbeerstraße 1</div>
+                    <div>12345 Lieferort</div>
+                   </td>                                
+            </td>
+          </tr>
+        </tbody>
       </table>
-    </div>
+ 
+    </section>
+        <div style="height:30px;"></div>
+            <div style="height:30px;"></div>
     <section>
-      <div class="date tr">
-        30.September. 1981
-      </div>
       <h1 class='title'>
         <div>
-          Quittung
+          Quittung vom {{=it.date}}
         </div>
+      </h1>   
+      <h2>
         <div>
          <span>{{=it.header.account}}</span>
         </div>
-      </h1>
-      <div>
-        <p>
-          Guten Tag Frau Musterfrau,
-        </p>
-        <p>vielen Dank für Ihr Vertrauen in die STROMDAO Autostrom. Aus Ihrem Verbrauch und den geleisteten Zahlungen ergibt sich folgende Rechnung zum genannten Abrechnungszeitraum. Alle Details finden Sie auf den folgenden Seiten.
-        </p>
-      </div>
+		</h2>
     </section>
+    <div style="height:30px;"></div>
     <section>
+	  <h3>Bezogene Leistungen</h3>
       <table>
         <thead class="aural if not needed">
-          <tr>
-            <th scope="col">Produkt</th>
-            <th scope="col">Menge</th>
-            <th scope="col">Nettobetrag</th>
-            <th scope="col">Umsatzsteuer</th>
+          <tr>            
+            <th scope="col">Bezeichnung</th>
+            <th scope="col">Menge</th>            
             <th scope="col">Bruttobetrag</th>
+          </tr>
+        </thead>        
+        <tbody class="group" >
+			{{~it.body :value:index}}	
+			<tr>
+				<td scope="row">{{=value[0]}}</td>
+				<td>{{=value[1]}} {{=value[2]}}</td>
+				<td style="align:right">{{=value[3]}}</td>
+			</tr>
+			{{~}}		
+        </tbody>
+    </table>
+    <div style="height:30px;"></div>
+	<h3>Energiewirtschaftliche Angaben</h3>
+	   <table>
+        <thead class="aural if not needed">
+          <tr>
+			<th scope="col"></th></th>
+            <th scope="col">Bezeichnung</th>
+            <th scope="col">Betrag</th>            
           </tr>
         </thead>
         <tbody class="group" >
-            <tr>
-              <td scope="row">Autostrom</td>
-              <td>200 kWh</td>
-              <td>€100,43</td>
-              <td>€53,43</td>
-              <td>€153,43</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #ccc;">
-              <td scope="row">Autostrom</td>
-              <td>200 kWh</td>
-              <td>€100,43</td>
-              <td>€53,43</td>
-              <td>€153,43</td>
-          </tr>
-        </tbody>
-        <tbody class="group">
-            <tr>
-              <td scope="row">Lokalstromvorteil</td>
-              <td></td>
-              <td>€100,43</td>
-              <td>€53,43</td>
-              <td>€153,43</td>
-          </tr>
-        </tbody>
-    </table>
-
+			{{~it.footer :value:index}}	
+			<tr>
+				<td scope="row"></td>
+				{{~value :v:i}}
+					<td>{{=v}}</td>
+				{{~}}
+			</tr>
+			{{~}}
+		</tbody>
+		</table>
     </section>
-  </main>
-  <page size="A4" class="bg1">
-  </page>
+      </main>
+	</page>
+	  <main size="A4">
+      <page size="A4" class="bg1">
+   <div style="height:30px;"></div>
+	<section>
+		<h3>Stromkennzeichnung gemäß § 42 des Energiewirtschaftsgesetzes</h3>
+		<p>Aufgeführte Stromlieferungen stammen zu 100% aus Erneuerbare Energien mit Herkunftsnachweise.</p>
+		<h5>Umweltbelastung</h5>
+		<table>
+		<tr>
+			<th></th>
+			<th>Stromlieferung</th>
+			<th>Durchschnitt in Deutschland</th>
+		</tr>
+		<tr>
+			<td>CO2-Emissionen</td>
+			<td>0g/kWh</td>
+			<td>556g/kWh</td>
+		</tr>
+		<tr>
+			<td>Radioaktiver Abfall</td>
+			<td>0g/kWh</td>
+			<td>0,0007g/kWh</td>
+		</tr>
+		</table>
+		 <div style="height:30px;"></div>
+		<h3>Förderung von Energieeffizienzmaßnahmen</h3>
+	   <p>
+		Informationen zu Anbietern von wirksamen Maßnahmen zur Energieeffizienzverbesserung
+		und Energieeinsparung sowie ihren Angeboten finden Sie auf einer
+		bei der Bundestelle für Energieeffizienz (BfEE) öffentlich geführten Anbieterliste unter
+		www.bfee-online.de
+	   </p>
+	    <div style="height:30px;"></div>
+	   <h3>Fragen oder Beschwerden im Zusammenhang mit Ihrer Energielieferung</h3>
+	   <p>
+	   Zur Beilegung von Streitigkeiten kann ein Schlichtungsverfahren bei der Schlichtungsstelle
+		ENERGIE beantragt werden. Voraussetzung dafür ist, dass der Kundenservice der Lieferstelle
+		kontaktiert wurde und innerhalb von 4 Wochen keine beidseitig zufriedenstellende
+		Lösung gefunden wurde.<br/>&nbsp;<br/>
+		Schlichtungsstelle Energie e. V.<br/>
+		Friedrichstraße 133<br/>
+		10117 Berlin<br/>
+		Tel.: 030 / 27 57 240 – 0<br/>
+		Fax: 030 / 27 57 240 - 69<br/>
+		Internet: www.schlichtungsstelle-energie.de<br/>
+		Mail: info@schlichtungsstelle-energie.de <br/>
+	   </p>
+   </section>
+     </page>
+	</main>
+
+</body>
+</html>

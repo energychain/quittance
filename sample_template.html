@@ -1,1 +1,9 @@
 <span>{{=it.header.account}}</span>
+{{~it.footer :value:index}}	
+	<tr>
+	{{~value :v:i}}
+		<td>{{=v}}</td>
+	{{~}}
+	</tr>
+{{~}}
+Danke

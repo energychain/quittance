@@ -59,6 +59,7 @@ vorpal
   .description("Output receipt for a given ledger identified by meter_point_id") 
   .option('-f <file>','Apply settlement/clearing from file')
   .option('-t <file>','Use template for rendition')
+  .option('-o <file>','Output File ')
   .action(function (args, callback) {	 
 	  var node = new StromDAOBO.Node({external_id:args.meter_point_id,testMode:true,rpc:global.rpcprovider});	
 	  node.storage.setItemSync(node.wallet.address,args.meter_point_id);	
@@ -95,7 +96,12 @@ vorpal
 				source = fs.readFileSync( args.options.t);								
 				var tempFn = doT.template(source);				
 				var result=tempFn(settlement.receipt);
-				vorpal.log(result);
+				if(typeof args.options.o != "undefined") {
+					fs.writeFileSync(args.options.o, result);
+				} else {
+					vorpal.log(result);
+				}				
+				
 			} else {
 				vorpal.log(settlement.receipt);
 			}
