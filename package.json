@@ -1,6 +1,6 @@
 {
   "name": "stromdao-quittance",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Accounting related processes for CLI or integrated usage (invoice, receipt,...)",
   "main": "index.js",
   "scripts": {
