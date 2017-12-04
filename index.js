@@ -10,9 +10,7 @@
  * 
  */
 var StromDAOBO = require("stromdao-businessobject");  
-const fs = require('fs');
-const vm = require('vm');
-const doT = require('dot') ;
+var receipt = require("./receipt.js");
 const vorpal = require('vorpal')();
 
 vorpal
@@ -60,53 +58,14 @@ vorpal
   .option('-f <file>','Apply settlement/clearing from file')
   .option('-t <file>','Use template for rendition')
   .option('-o <file>','Output File ')
-  .action(function (args, callback) {	 
-	  var node = new StromDAOBO.Node({external_id:args.meter_point_id,testMode:true,rpc:global.rpcprovider});	
-	  node.storage.setItemSync(node.wallet.address,args.meter_point_id);	
-	  node.stromkonto(smart_contract_stromkonto).then( function(sko) {		
-		var ps = [];
-		ps.push(sko.balancesSoll(node.wallet.address));
-		ps.push(sko.balancesHaben(node.wallet.address));
-		ps.push(sko.baseSoll(node.wallet.address));
-		ps.push(sko.baseHaben(node.wallet.address));
-		Promise.all(ps).then(function(values) {
-			global.settlement={}
-			var settlement_js=null;
-			settlement.value_soll=values[0];
-			settlement.value_haben=values[1];
-			settlement.value_balance=settlement.value_haben-settlement.value_soll;
-			settlement.base_soll=values[2];
-			settlement.base_haben=values[3];
-			settlement.base_balance=settlement.base_haben-settlement.base_soll;
-			settlement.account=node.wallet.address;
-			settlement.id=args.meter_point_id;
-			settlement.ledger=smart_contract_stromkonto;
-			settlement.receipt={};
-			settlement.receipt.header={};
-			settlement.receipt.body={};
-			settlement.receipt.footer={};
-			if(typeof args.options.f != "undefined") {
-				settlement_js = fs.readFileSync( args.options.f);
-			}
-			if(settlement_js!=null) {
-				var script = new vm.Script(settlement_js);
-				var result=script.runInThisContext();	
-			}
-			if(typeof args.options.t != "undefined") {
-				source = fs.readFileSync( args.options.t);								
-				var tempFn = doT.template(source);				
-				var result=tempFn(settlement.receipt);
-				if(typeof args.options.o != "undefined") {
-					fs.writeFileSync(args.options.o, result);
-				} else {
-					vorpal.log(result);
-				}				
-				
-			} else {
-				vorpal.log(settlement.receipt);
-			}
-			callback();		
-		});			
-	});
-});
+  .option('--sc <address>','Smart Contract Address of Stromkonto (Ledger)')
+  .option('-a <address>','Address/Account to use')
+  .option('-p <file>','Additional Profile JSON')
+   .types({
+    string: ['sc', 'a','f','t','o','p']
+  })
+  .action(receipt.receipt);
+  
+
+  
 var cli = new require("stromdao-cli-helper")(vorpal);
